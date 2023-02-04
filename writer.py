@@ -1,10 +1,12 @@
 from tistory_util import *
 import requests
 import json
+from translater import get_translate
 
 # Tistory category ID
 blog_name = "powerupupupup.tistory.com"
 category_id = "1076872"
+k_category_id = "1077786"
 
 # Airtable base ID
 base_id = 'appXihEeZgqSVkQKW'
@@ -160,6 +162,33 @@ def writer():
     return title, content
 
 
+def korean_writer():
+    explanation_kr_title = get_translate(s_title)
+    explanation_kr_body = get_translate(s_body)
+    explanation_kr_summary = get_translate(s_summary)
+
+    title_2 = f"{explanation_kr_title}({s_id})"
+
+    content_2 = f'''
+    <p data-ke-size="size16">🧸 안녕하세요, 오늘은 어떤 DX 소식이 기다리고 있을까요? 사진과 함께 감상해주세요! 🧸</p>
+    <p data-ke-size="size16">✨ 짜잔-! ✨</p>
+    <p data-ke-size="size6">&nbsp;</p>
+    <p data-ke-size="size16">제목: {explanation_kr_title}</p>
+    <p data-ke-size="size16">🧸 이미지 🧸</p>
+    <p data-ke-size="size16"><img src="{s_img_url}" alt=""/></p>
+    <p data-ke-size="size16">&nbsp;</p>
+    <p data-ke-size="size16">🧸 설명 🧸</p>
+    <p data-ke-size="size16">{explanation_kr_body}</p>
+    <p data-ke-size="size16">&nbsp;</p>
+    <p data-ke-size="size16">🧸 요약입니다 🧸</p>
+    <p data-ke-size="size16">{explanation_kr_summary}</p>
+    <p data-ke-size="size16">&nbsp;</p>
+    <p data-ke-size="size16">감사합니다! 행복한 DX 생활 되세요 :) 💫</p>
+    '''
+
+    return title_2, content_2
+
+
 if __name__ == "__main__":
     title, content = writer()
 
@@ -168,5 +197,15 @@ if __name__ == "__main__":
         category_id=category_id,
         title=title,
         content=content,
+        tag='API, Automation, chatGPT, OpenAI, Python'
+    )
+
+    title_2, content_2 = korean_writer()
+
+    blog_write(
+        blog_name=blog_name,
+        category_id=k_category_id,
+        title=title_2,
+        content=content_2,
         tag='API, Automation, chatGPT, OpenAI, Python'
     )
