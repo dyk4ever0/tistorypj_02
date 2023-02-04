@@ -1,7 +1,7 @@
 from tistory_util import *
 import requests
 import json
-from translater import get_translate
+from translator import get_translate
 
 # Tistory category ID
 blog_name = "powerupupupup.tistory.com"
