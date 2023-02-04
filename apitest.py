@@ -89,6 +89,6 @@ while posted_once > 0:
                     pass
             posted_once -= 1
         break
-print(s_id, s_title)
-print(table_record_dict)
+#print(s_id, s_title)
+#print(table_record_dict)
 
