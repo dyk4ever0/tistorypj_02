@@ -27,6 +27,8 @@ jobs:
         TI_SECRET: ${{ secrets.TI_SECRET }}
         TI_CODE: ${{ secrets.TI_CODE }}
         TI_ACCESS_TOKEN: ${{ secrets.TI_ACCESS_TOKEN }}
+        PAPAGO_ID: ${{ secrets.PAPAGO_ID }}
+        PAPAGO_SECRET: ${{ secrets.PAPAGO_SECRET }}
       run: |
         bash setup_env.sh
         python writer.py
